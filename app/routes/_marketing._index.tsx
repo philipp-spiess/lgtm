@@ -1,4 +1,5 @@
-import { Link } from "@remix-run/react"
+import { LoaderFunctionArgs, json } from "@remix-run/cloudflare"
+import { Link, useLoaderData } from "@remix-run/react"
 
 export function headers() {
   return {
@@ -8,7 +9,13 @@ export function headers() {
   }
 }
 
+export async function loader({ context, request }: LoaderFunctionArgs) {
+  console.log(await context.bucket.list())
+  return json({ images: [] })
+}
+
 export default function Index() {
+  console.log(useLoaderData())
   return (
     <div className="flex flex-col items-center my-28">
       <h1 className="text-4xl font-bold text-center mb-8">

@@ -18,6 +18,7 @@ export default defineConfig({
           ])
         const proxy = await getPlatformProxy<{
           DB: D1Database
+          R2: R2Bucket
           AUTH_SECRET: string
           GITHUB_ID: string
           GITHUB_SECRET: string
@@ -27,6 +28,7 @@ export default defineConfig({
 
         return {
           db,
+          bucket: proxy.env.R2,
           env: proxy.env,
         }
       },
