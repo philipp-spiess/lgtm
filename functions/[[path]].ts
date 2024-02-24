@@ -16,6 +16,7 @@ export const onRequest = createPagesFunctionHandler({
     })
     return {
       db,
+      bucket: context.context.cloudflare.env.R2,
       env: context.context.cloudflare.env,
     }
   },
