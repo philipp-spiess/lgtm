@@ -3,7 +3,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/philippspiess/jumpstart"
+    "url": "https://github.com/philippspiess/lgtm"
   },
   "license": "MIT",
   "author": "Philipp Spiess <philipp@spiess.dev>",
@@ -13,8 +13,8 @@
     "build": "remix vite:build",
     "check": "pnpm typecheck && biome check .",
     "db:generate": "drizzle-kit generate:sqlite",
-    "db:migrate": "pnpm wrangler d1 migrations apply jumpstart --local",
-    "deploy": "wrangler pages deploy ./build/client --project-name=jumpstart",
+    "db:migrate": "pnpm wrangler d1 migrations apply lgtm --local",
+    "deploy": "wrangler pages deploy ./build/client --project-name=lgtm",
     "dev": "remix vite:dev",
     "format": "biome check --apply .",
     "start": "wrangler pages dev ./build/client",

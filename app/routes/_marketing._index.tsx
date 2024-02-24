@@ -10,9 +10,9 @@ export function headers() {
 
 export default function Index() {
   return (
-    <div className="flex flex-col items-center mt-36">
+    <div className="flex flex-col items-center my-28">
       <h1 className="text-4xl font-bold text-center mb-8">
-        Welcome to my website.
+        Make Your Reviews Fun Again
       </h1>
       <Link
         to="/auth/github"

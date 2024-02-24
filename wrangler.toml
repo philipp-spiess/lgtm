@@ -1,8 +1,8 @@
-name = "jumpstart"
+name = "lgtm"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "jumpstart"
-database_id = "72ed764e-e023-406c-929f-7adeed660aab"
+database_name = "lgtm"
+database_id = "259c6786-1188-44ad-b2c5-d84174bcc329"
 migrations_table = "migrations"
 migrations_dir = "./app/db.server/migrations"

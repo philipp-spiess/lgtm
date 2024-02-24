@@ -28,7 +28,7 @@ export function createAuthenticator(context: AppLoadContext) {
       clientSecret: context.env.GITHUB_SECRET,
       callbackURL:
         context.env.ENV === "production"
-          ? "https://jumpstart.spiess.dev/auth/github/callback"
+          ? "https://lgtm.spiess.dev/auth/github/callback"
           : "http://localhost:5173/auth/github/callback",
       scope: gitHubScope,
     },

@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: https://jumpstart.spiess.dev
+      url: https://lgtm.spiess.dev
     needs: [test]
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
     steps:
@@ -82,7 +82,7 @@ jobs:
         run: pnpm run build
 
       - name: 🗄 Migrate
-        run: pnpm wrangler d1 migrations apply jumpstart
+        run: pnpm wrangler d1 migrations apply lgtm
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
