@@ -1,0 +1,13 @@
+# A secret used to encrypt the session cookie
+AUTH_SECRET="Run $(openssl rand -hex 20)"
+
+# Credentials for the GitHub OAuth app for development.
+#
+# Create them at https://github.com/settings/developers
+#
+# For the local development app, the callback URL is http://localhost:5173/auth/github/callback
+GITHUB_ID=""
+GITHUB_SECRET=""
+
+# Like NODE_ENV but not Node
+ENV=development

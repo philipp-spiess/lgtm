@@ -1,0 +1,8 @@
+name = "jumpstart"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jumpstart"
+database_id = "72ed764e-e023-406c-929f-7adeed660aab"
+migrations_table = "migrations"
+migrations_dir = "./app/db.server/migrations"
