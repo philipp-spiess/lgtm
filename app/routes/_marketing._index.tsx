@@ -1,5 +1,7 @@
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare"
 import { Link, useLoaderData } from "@remix-run/react"
+import { Copy } from "lucide-react"
+import { useState } from "react"
 
 export function headers() {
   return {
@@ -16,6 +18,19 @@ export async function loader({ context, request }: LoaderFunctionArgs) {
 
 export default function Index() {
   const { images } = useLoaderData<typeof loader>()
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null)
+  const [copiedImage, setCopiedImage] = useState<string | null>(null)
+
+  function copyToClipboard(image: string) {
+    navigator.clipboard.writeText(
+      `![${image}](https://lgtm.spiess.dev/image/${image})`,
+    )
+    setCopiedImage(image)
+    setTimeout(() => {
+      setCopiedImage(null)
+    }, 1000)
+  }
+
   return (
     <>
       <div className="flex flex-col items-center my-28">
@@ -42,14 +57,37 @@ export default function Index() {
           <span className="text-primary-foreground">Join the wait list</span>
         </Link>
       </div>
-      <div>
+      <div className="grid md:grid-cols-2 gap-4">
         {images.map((image) => (
-          <img
-            key={image}
-            alt={image}
-            src={`/image/${image}`}
-            className="rounded-lg shadow-lg w-full h-96 object-cover max-w-screen-lg mx-auto"
-          />
+          <button
+            type="button"
+            onMouseEnter={() => setHoveredImage(image)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => copyToClipboard(image)}
+            className="relative"
+          >
+            <img
+              key={image}
+              alt={image}
+              src={`/image/${image}`}
+              className="rounded-sm shadow-lg max-w-sm mx-auto cursor-pointer"
+              style={{ maxWidth: "600px" }}
+            />
+            {hoveredImage === image && (
+              <div className="absolute inset-0 bg-black opacity-50 rounded-sm shadow-lg  flex items-center justify-center">
+                <p className="text-white text-center text-lg font-bold">
+                  {copiedImage === image ? (
+                    "Copied!"
+                  ) : (
+                    <>
+                      <Copy className="w-6 h-6 inline mr-2" />
+                      Copy to clipboard
+                    </>
+                  )}
+                </p>
+              </div>
+            )}
+          </button>
         ))}
       </div>
     </>
