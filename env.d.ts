@@ -1,7 +1,6 @@
 /// <reference types="@remix-run/cloudflare" />
 /// <reference types="vite/client" />
 
-import type { D1Database, R2Bucket } from "@cloudflare/workers-types"
 import type { DB } from "./app/db.server/schema"
 declare module "@remix-run/cloudflare" {
   interface AppLoadContext {
