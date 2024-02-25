@@ -19,7 +19,6 @@ export async function action({ request, context }: ActionFunctionArgs) {
   })
   const formData = await unstable_parseMultipartFormData(request, uploadHandler)
   const image = formData.get("img") as File
-
   context.bucket.put(image.name, await image.arrayBuffer())
 
   return redirect("/app")
