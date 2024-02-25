@@ -1,8 +1,7 @@
 import { LoaderFunctionArgs } from "@remix-run/cloudflare"
 
-export async function loader({ params, context, request }: LoaderFunctionArgs) {
+export async function loader({ params, context }: LoaderFunctionArgs) {
   const key = params["*"]!
-
   const object = await context.bucket.get(key)
 
   if (object === null) {
@@ -15,7 +14,7 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
   }
   headers.set("etag", object.httpEtag)
 
-  return new Response(object.body as unknown as BodyInit, {
+  return new Response(object.body, {
     headers,
   })
 }
